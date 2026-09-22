@@ -1,0 +1,5 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {sampleData,populateSampleCommunities} from '../public/core.js';
+test('sample students include all six fictional community groups',()=>{const rows=sampleData().filter(r=>r.kind==='student');for(const group of ['SC','ST','MBC','BC','General','Others'])assert.equal(rows.filter(r=>r.payload.community===group).length,25);});
+test('community backfill preserves entered values and leaves custom children untouched',()=>{const rows=[{id:'V001',kind:'student',payload:{name:'Sample student 1'}},{id:'V002',kind:'student',payload:{name:'Sample student 2',community:'Others'}},{id:'V003',kind:'student',payload:{name:'Custom child'}},{id:'V-custom',kind:'student',payload:{name:'Sample student 4'}}];populateSampleCommunities(rows);assert.equal(rows[0].payload.community,'SC');assert.equal(rows[1].payload.community,'Others');assert.equal(rows[2].payload.community,undefined);assert.equal(rows[3].payload.community,undefined);const before=JSON.stringify(rows);populateSampleCommunities(rows);assert.equal(JSON.stringify(rows),before);});
