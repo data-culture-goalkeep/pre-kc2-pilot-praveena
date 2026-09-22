@@ -1,5 +1,11 @@
 # Version history
 
+## 0.2.0 — 2026-09-22
+
+Three integrated tabs: Overview (class summary and student/teacher management), Attendance & growth (monthly insights and both entry forms), and Assessments (progress, competency averages and score entry). Register filters include student status and teacher name, role, status and subject. Removal retains history by recording student leaving details or deactivating teachers. Saving one entry form preserves unsaved changes in the other.
+
+Validation: 14 automated calculation, rendering, filtering and draft-preservation checks pass. Automated browser launch was unavailable in this environment. Supabase remains unconfigured; the hosted pilot uses browser-local demo data.
+
 ## 0.1.0 — 2026-09-15
 
 First interactive school pilot. Tamil/English interface, student and teacher registers, weekly attendance, quarterly competency assessments, monthly growth, dashboard and child profiles. Includes the 27 supplied competencies across all ten grades, WHO reference tables, local offline saving, Supabase schema with staff-only access and revision checks, and frontend deployment configuration.
