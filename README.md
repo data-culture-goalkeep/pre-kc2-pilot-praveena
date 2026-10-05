@@ -30,9 +30,10 @@ Open http://127.0.0.1:4173. Without database configuration the app opens a ficti
 
 1. Create the intended Free Supabase project. Do not put credentials in GitHub.
 2. Run `supabase/001_school.sql` in its SQL editor.
-3. Disable public sign-ups in Authentication. Create/invite staff through the Supabase dashboard.
-4. Add each user's Auth UUID to `school_staff` with their role and `approved=true`, using the SQL editor. The app cannot approve its own users.
-5. Supply `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` in the Vercel environment. Only use a publishable key or legacy anon key. Never use a service-role/secret key.
+3. Run `supabase/002_source_aligned.sql` to add relational import tables matching the shared Students, Attendance, Growth and Assessment workbooks. This migration keeps the pilot `school_records` tables intact.
+4. Disable public sign-ups in Authentication. Create/invite staff through the Supabase dashboard.
+5. Add each user's Auth UUID to `school_staff` with their role and `approved=true`, using the SQL editor. The app cannot approve its own users.
+6. Supply `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` in the Vercel environment. Only use a publishable key or legacy anon key. Never use a service-role/secret key.
 
 All approved school staff can read/edit school records, matching the pilot's requested shared access. Unapproved and anonymous users cannot read live records. RLS is enabled and writes go through a validating SQL function. Each write is audited. Local live records are isolated by signed-in user; sign-out closes access but retains that user's browser cache for offline continuity. Use school-controlled devices. A session lasts for this browser tab; fresh sign-in requires internet. No real child records are in this repository.
 
